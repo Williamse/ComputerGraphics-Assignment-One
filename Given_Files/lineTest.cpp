@@ -38,7 +38,7 @@ int main (int argc, char *argv[])
 
     //######## The letter 'G' in green ########
     T.setColor( 1.0,0.0,0.0 );
-   /* R.drawLine( 80, 340, 220, 340, T );   // Horizontal left to right 
+    R.drawLine( 80, 340, 220, 340, T );   // Horizontal left to right 
     R.drawLine( 40, 380, 80, 340, T );    // 315 degree slope        
     R.drawLine( 220, 340, 260, 380, T );  // 45 degree slope          
     R.drawLine( 260, 380, 260, 440, T );  // Vertical bottom to top
@@ -59,8 +59,6 @@ int main (int argc, char *argv[])
     R.drawLine( 220, 560, 80, 560, T );
     R.drawLine( 80, 560, 40, 520, T );    // 225 degree slope
     R.drawLine( 40, 520, 40, 380, T );    // Vertical top to bottom
-*/
-R.drawLine(8,41,43,36,T);
 
 /*
     //######## The letter 'O' in red ########
