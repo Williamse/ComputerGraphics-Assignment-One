@@ -60,7 +60,7 @@ int main (int argc, char *argv[])
     R.drawLine( 80, 560, 40, 520, T );    // 225 degree slope
     R.drawLine( 40, 520, 40, 380, T );    // Vertical top to bottom
 */
-R.drawLine(8,61,29,52,T);
+R.drawLine(8,41,43,36,T);
 
 /*
     //######## The letter 'O' in red ########

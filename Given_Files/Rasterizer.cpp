@@ -55,37 +55,32 @@ void Rasterizer::swapPoints(int* p0, int* p1)
  */
 void Rasterizer::drawLine (int x0, int y0, int x1, int y1, simpleCanvas &C)
 {
+  
+    //Make sure our first x is on the left always
+    if(x0 > x1)
+    {
+        swapPoints(&x0,&x1);
+        swapPoints(&y0,&y1);
+    }
+
+
     int dE,dNE,x,y,d;
     int dy = (y1 - y0),dx = (x1-x0);
+
     bool largestSlope = std::abs(y1 - y0) > std::abs(x1 - x0); 
-    
+  
     //If positive slope
-    if(dy >= 0)
+    if(dy >= 0 && dy <= dx) // slope is 0 ,1
     {
-        if(largestSlope)
-        {
-            swapPoints(&x0,&y0);
-            swapPoints(&x1,&y1);
-            swapPoints(&dy,&dx);
-        }
-    
-        if(x0 > x1)
-        {
-            swapPoints(&x0,&x1);
-            swapPoints(&y0,&y1);
-        }
-    
+        d = 2 * dy - dx;
         x = x0;
         y = y0;
         dE = 2 * dy;
         dNE = 2 * (dy - dx);
-        d = dE - dx;
 	
 
         while(x < x1)
         {
-       
-       
            if(d <=0) {
              std::cout << "here" << std::endl;
              d = d + dE;
@@ -97,42 +92,48 @@ void Rasterizer::drawLine (int x0, int y0, int x1, int y1, simpleCanvas &C)
                d = d + dNE;
            } 
            x++;
-           if(!largestSlope)
-           {
-               std::cout << "Writing Pixel (" << x << "," << y << ")" << std::endl;
-               C.setPixel(x,y);
-           }
-           else
-           {
-              std::cout << "Writing Pixel (" << y << "," << x << ")" << std::endl;
-
-              C.setPixel(y,x);
-           }
+           std::cout << "Writing Pixel (" << x << "," << y << ")" << std::endl;
+           C.setPixel(x,y);
+           
      //   C.setPixel (0,1, 3.0, 4.0, 2.0);
         }
     }
-    //Negative slope
-    else
+    if(dy >= 0 && dy > dx) //steep
     {
-        if(largestSlope)
+        d = 2 * dx - dy;
+        x = x0;
+        y = y0;
+        dE = 2 * dx;
+        dNE = 2 * (dx - dy);
+
+
+        while(x < x1)
         {
-            swapPoints(&x0,&y0);
-            swapPoints(&x1,&y1);
-            swapPoints(&dy,&dx);
+           if(d <=0) {
+             d = d + dE;
+           }
+           else
+           {
+              x++;
+              d = d + dNE;
+           }
+           y++;
+           std::cout << "Writing Pixel (" << x << "," << y << ")" << std::endl;
+           C.setPixel(x,y);
+
+     //   C.setPixel (0,1, 3.0, 4.0, 2.0);
         }
-        if(x0 > x1)
-        {
-            swapPoints(&x0,&x1);
-            swapPoints(&y0,&y1);
-        } 
-
-
-
+    }
+    //Negative non steep slope
+    if( dy < 0 && std::abs(dy) < dx) 
+    {
+       dy = std::abs(dy);
+       dx = std::abs(dx);
         x = x0;
         y = y0;
         dE = 2 * dy;
         dNE = 2 * (dy - dx);
-        d = dE - dx;
+        d = 2*dy - dx;
         
         while( x < x1)
         {
@@ -147,16 +148,8 @@ void Rasterizer::drawLine (int x0, int y0, int x1, int y1, simpleCanvas &C)
              }
              x++;
         
-            if(!largestSlope)
-            {
-                std::cout << "Writing Pixel (" << x << "," << y << ")" << std::endl;
-                C.setPixel(x,y);
-            }
-            else
-            {
-                std::cout << "Writing Pixel (" << y << "," << x << ")" << std::endl;
-                C.setPixel(y,x);
-            }
+            std::cout << "Writing Pixel (" << x << "," << y << ")" << std::endl;
+            C.setPixel(x,y);
        }
     }     
 }
