@@ -44,6 +44,7 @@ public:
     void drawLine (int x0, int y0, int x1, int y1, simpleCanvas &C);
 
 private:
+    void swapPoints(int *p0, int *p1);
     /**
      * number of scanlines
      */
