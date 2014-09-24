@@ -107,9 +107,9 @@ void Rasterizer::drawLine (int x0, int y0, int x1, int y1, simpleCanvas &C)
 		major = 2 * dx;
 		minor = 2 * (dx - dy);
 	}
-
+                                
 	//Vertical lines are dealt with differently
-    	if (vertical)
+    if (vertical)
 	{
 		if (y0 > y1)
 		{

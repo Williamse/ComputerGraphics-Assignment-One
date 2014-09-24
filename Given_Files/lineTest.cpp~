@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
 	R.drawLine(220, 200, 220, 240, T);
 	R.drawLine(220, 240, 40, 240, T);
 
-	R.drawLine(600,600,0,0,T);
+	R.drawLine(0,0,600,600,T);
 	//W in Blue
 	R.drawLine(350, 20, 390, 20, T);
 	R.drawLine(390, 20, 440, 100, T);
